@@ -2,26 +2,25 @@ pipeline {
     agent any
 
     tools {
-        // Make sure Jenkins has JDK installed and configured
-        jdk 'JDK21'
+        jdk 'JDK21' // Make sure JDK is configured in Jenkins
     }
 
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/mehek89/SunnyJavaApp.git'
+                git branch: 'main', url: 'https://github.com/mehek89/SunnyJavaApp.git'
             }
         }
 
         stage('Compile') {
             steps {
-                sh 'javac src/Main.java -d .'
+                bat 'javac src\\Main.java -d .'
             }
         }
 
         stage('Run') {
             steps {
-                sh 'java Main'
+                bat 'java Main'
             }
         }
     }
